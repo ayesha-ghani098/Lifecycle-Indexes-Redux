@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# LIFECYCLE INDEXES REDUX
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## REDUX
 
-## Available Scripts
+### What is redux and why it is used for?
 
-In the project directory, you can run:
 
-### `npm start`
+Redux is one of the hottest libraries in front-end development these days.
+ However, many people are confused about what it is and what its benefits are.
+As the documentation states, Redux is a predictable state container for
+ JavaScript apps. To rephrase that, it’s an application data-flow architecture, 
+ rather than a traditional library or a framework like Underscore.js and AngularJS.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ ### Command to install react and react-redux
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ npm i react-redux redux 
+ ## or
+ npm i react-redux
+ npm i redux
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Provider
+### React Redux provides <Provider />, which makes the Redux store available to the rest of your app:
 
-### `npm run build`
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+import { Provider } from 'react-redux'
+import store from './store'
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+import App from './App'
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+const rootElement = document.getElementById('root')
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootElement
+)
 
-### `npm run eject`
+# connect()
+### React Redux provides a connect function for you to connect your component to the store.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+import { connect } from 'react-redux'
+import { increment, decrement, reset } from './actionCreators'
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+// const Counter = ...
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+const mapStateToProps = (state /*, ownProps*/) => {
+  return {
+    counter: state.counter
+  }
+}
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+const mapDispatchToProps = { increment, decrement, reset }
 
-## Learn More
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter)
+ 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ ## To Do Functional Work import middleware which will get from redux-thunk
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ ### npm i redux-thunk

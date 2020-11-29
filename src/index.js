@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+//to connect your application to redux import provider in your main file
+import { Provider } from 'react-redux';
+// import store from store index.js
+import store from './store'
+
 
 ReactDOM.render(
-  <React.StrictMode>
+  // place your app inside provider and pass store as prop in provider
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
