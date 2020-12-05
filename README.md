@@ -60,6 +60,6 @@ export default connect(
 )(Counter)
  
 
- ## To Do Functional Work like api calling or firebase database  import applymiddleware which will get from redux-thunk
+ ## To Do Functional Work like api calling or firebase database  import middleware which will get from redux-thunk
 
  ### npm i redux-thunk
